@@ -11,16 +11,19 @@ public class DanhBa {
     private String diaChi;
     private String email;
     private String facebook;
+    private String gioiTinh;
+    private String ngaySinh;
 
     public DanhBa() {
     }
 
-    public DanhBa(String hoTen, String soDienThoai, String diaChi, String email, String facebook) {
+    public DanhBa(String hoTen, String soDienThoai, String diaChi, String email, String facebook, String gioiTinh) {
         this.hoTen = hoTen;
         this.soDienThoai = soDienThoai;
         this.diaChi = diaChi;
         this.email = email;
         this.facebook = facebook;
+        this.gioiTinh = gioiTinh;
     }
 
     public String getHoTen() {
@@ -61,5 +64,34 @@ public class DanhBa {
 
     public void setFacebook(String facebook) {
         this.facebook = facebook;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public String getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(String ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    @Override
+    public String toString() {
+        return "DanhBa{" +
+                "Họ Tên='" + hoTen + '\'' +
+                ", Số điện thoại='" + soDienThoai + '\'' +
+                ", Địa chỉ='" + diaChi + '\'' +
+                ", Email='" + email + '\'' +
+                ", Facebook='" + facebook + '\'' +
+                ", Giới tính='" + gioiTinh + '\'' +
+                ", Ngày sinh='" + ngaySinh + '\'' +
+                '}';
     }
 }

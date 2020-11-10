@@ -6,8 +6,8 @@
  */
 
 public interface Manager<T> {
-    void add(T obj);
+    boolean add(T obj);
     boolean remove(T obj);
-    boolean remove(int index);
-    boolean edit(int index, T obj);
+    T remove(int index);
+    T edit(int index, T obj);
 }

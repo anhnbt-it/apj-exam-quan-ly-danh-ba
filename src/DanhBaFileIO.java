@@ -14,11 +14,13 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
     public boolean writeCSVFile(List<DanhBa> danhBaList, String csvFile) {
         try {
             File file = new File(csvFile);
+            File folder = new File("data");
+            if (!folder.exists()) folder.mkdir();
             if (!file.exists()) file.createNewFile();
             Writer writer = new BufferedWriter(new FileWriter(file));
-            for (DanhBa student : danhBaList) {
-                String text = "";
+            for (DanhBa danhBa : danhBaList) {
 //                String text = student.getId() + "," + student.getName() + "," + student.getAddress() + "," + student.getPhone() + "," + student.getEmail() + "," + student.getGender() + "\n";
+                String text = danhBa.getSoDienThoai() + "\n";
                 try {
                     writer.write(text);
                 } catch (IOException e) {
@@ -38,6 +40,8 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
     public List<DanhBa> readCSV(String csvFile) {
         List<DanhBa> danhBaList = new ArrayList<>();
         try {
+            File folder = new File("data");
+            if (!folder.exists()) folder.mkdir();
             File file = new File(csvFile);
             if (!file.exists()) file.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -46,7 +50,9 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
                 String cvsSplitBy = ",";
                 if (line.contains(cvsSplitBy)) {
                     String[] data = line.split(cvsSplitBy);
-//                    danhBaList.add(new DanhBa(Integer.parseInt(data[0]), data[1], data[2], data[3], data[4], data[5]));
+                    DanhBa danhBa = new DanhBa();
+                    danhBa.setSoDienThoai(data[0]);
+                    danhBaList.add(danhBa);
                 }
             }
             reader.close();
