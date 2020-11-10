@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: AnhNBT (anhnbt.it@gmail.com)
@@ -5,5 +8,9 @@
  * Time: 9:12 SA
  */
 
-public class FileIO {
+public interface FileIO<T> {
+
+    boolean writeCSVFile(List<T> lists, String csvFile);
+
+    List<T> readCSV(String csvFile);
 }
