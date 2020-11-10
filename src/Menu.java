@@ -50,13 +50,13 @@ public class Menu {
     void themMoiDanhBa() {
         tieuDe("---- ADMIN/THÊM MỚI ----");
         DanhBa danhBa = new DanhBa();
-        danhBa.setSoDienThoai(inputStr("Nhập số điện thoại: "));
+        danhBa.setSoDienThoai(nhapSoDienThoai("Nhập số điện thoại: "));
         danhBa.setFacebook(inputStr("Nhập Nhóm: "));
         danhBa.setHoTen(inputStr("Nhập Họ tên: "));
-        danhBa.setGioiTinh(inputStr("Nhập Giới tính [male, female]: "));
+        danhBa.setGioiTinh(inputStr("Nhập Giới tính [M, F]: "));
         danhBa.setDiaChi(inputStr("Nhập Địa chỉ: "));
         danhBa.setNgaySinh(inputStr("Nhập Ngày sinh [dd/mm/yyy]: "));
-        danhBa.setEmail(inputStr("Nhập Email: "));
+        danhBa.setEmail(nhapEmail("Nhập Email: "));
         if (danhBaManager.add(danhBa)) {
             System.out.println("Thêm danh bạ thành công!");
         } else {
@@ -69,13 +69,13 @@ public class Menu {
         String soDienThoai = inputStr("Nhập vào số điện thoại của danh bạ cần sửa: ");
         DanhBa danhBa = danhBaManager.findByPhone(soDienThoai);
         if (danhBa != null) {
-            danhBa.setSoDienThoai(inputStr("Nhập số điện thoại: "));
+            danhBa.setSoDienThoai(nhapSoDienThoai("Nhập số điện thoại: "));
             danhBa.setFacebook(inputStr("Nhập Nhóm: "));
             danhBa.setHoTen(inputStr("Nhập Họ tên: "));
             danhBa.setGioiTinh(inputStr("Nhập Giới tính [M, F]: "));
             danhBa.setDiaChi(inputStr("Nhập Địa chỉ: "));
             danhBa.setNgaySinh(inputStr("Nhập Ngày sinh [dd/mm/yyy]: "));
-            danhBa.setEmail(inputStr("Nhập Email: "));
+            danhBa.setEmail(nhapEmail("Nhập Email: "));
             for (int i = 0; i < danhBaManager.getAll().size(); i++) {
                 danhBaManager.edit(i, danhBa);
                 System.out.println("Sửa danh bạ thành công!");
@@ -198,7 +198,7 @@ public class Menu {
             System.out.print(title);
             str = scanner.nextLine();
             if (str == "") {
-                System.out.print("Trường dữ liệu không được bỏ trống. Vui lòng nhập lại!");
+                System.out.println("Trường dữ liệu không được bỏ trống. Vui lòng nhập lại!");
                 continue;
             } else {
                 break;
@@ -208,15 +208,39 @@ public class Menu {
     }
 
     public String nhapSoDienThoai(String title) {
-        System.out.print(title);
-        String soDienThoai = scanner.nextLine();
-        return soDienThoai;
+        String str;
+        while (true) {
+            System.out.print(title);
+            str = scanner.nextLine();
+            if (str == "") {
+                System.out.println("Trường dữ liệu không được bỏ trống. Vui lòng nhập lại!");
+                continue;
+            } else if (!formValidator.phone(str)) {
+                System.out.println("Nhập sai định dạng. Vui lòng nhập lại");
+                continue;
+            } else {
+                break;
+            }
+        }
+        return str;
     }
 
     public String nhapEmail(String title) {
-        System.out.print(title);
-        String email = scanner.nextLine();
-        return email;
+        String str;
+        while (true) {
+            System.out.print(title);
+            str = scanner.nextLine();
+            if (str == "") {
+                System.out.println("Trường dữ liệu không được bỏ trống. Vui lòng nhập lại!");
+                continue;
+            } else if (!formValidator.email(str)) {
+                System.out.println("Nhập sai định dạng. Vui lòng nhập lại");
+                continue;
+            } else {
+                break;
+            }
+        }
+        return str;
     }
 
     private void showMsg(String s) {

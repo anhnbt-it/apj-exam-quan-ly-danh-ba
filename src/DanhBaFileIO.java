@@ -14,13 +14,12 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
     public boolean writeCSVFile(List<DanhBa> danhBaList, String csvFile) {
         try {
             File file = new File(csvFile);
-            File folder = new File("data");
+            File folder = new File("contacts.csv");
             if (!folder.exists()) folder.mkdir();
             if (!file.exists()) file.createNewFile();
             Writer writer = new BufferedWriter(new FileWriter(file));
             for (DanhBa danhBa : danhBaList) {
-//                String text = student.getId() + "," + student.getName() + "," + student.getAddress() + "," + student.getPhone() + "," + student.getEmail() + "," + student.getGender() + "\n";
-                String text = danhBa.getSoDienThoai() + "\n";
+                String text = danhBa.getSoDienThoai() + "," + danhBa.getFacebook() + "," + danhBa.getHoTen() + "," + danhBa.getGioiTinh() + "," + danhBa.getEmail() + "," + danhBa.getNgaySinh() + "\n";
                 try {
                     writer.write(text);
                 } catch (IOException e) {
@@ -40,9 +39,7 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
     public List<DanhBa> readCSV(String csvFile) {
         List<DanhBa> danhBaList = new ArrayList<>();
         try {
-            File folder = new File("data");
-            if (!folder.exists()) folder.mkdir();
-            File file = new File(csvFile);
+            File file = new File("contacts.csv");
             if (!file.exists()) file.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
@@ -52,6 +49,11 @@ public class DanhBaFileIO implements FileIO<DanhBa> {
                     String[] data = line.split(cvsSplitBy);
                     DanhBa danhBa = new DanhBa();
                     danhBa.setSoDienThoai(data[0]);
+                    danhBa.setFacebook(data[1]);
+                    danhBa.setHoTen(data[2]);
+                    danhBa.setGioiTinh(data[3]);
+                    danhBa.setEmail(data[4]);
+                    danhBa.setNgaySinh(data[5]);
                     danhBaList.add(danhBa);
                 }
             }
