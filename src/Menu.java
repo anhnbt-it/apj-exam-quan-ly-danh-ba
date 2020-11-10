@@ -19,4 +19,42 @@ public class Menu {
         System.out.println("8. Thoát");
         System.out.print("Chọn chức năng: ");
     }
+
+    void danhDachDanhBa() {
+        tieuDe("---- DANH SÁCH DANH BẠ ----");
+        //
+    }
+
+    void themMoiDanhBa() {
+        tieuDe("---- THÊM MỚI ----");
+    }
+
+    void capNhatDanhBa() {
+        tieuDe("---- CẬP NHẬT ----");
+    }
+
+    void xoaDanhBa() {
+        tieuDe("---- XÓA DANH BẠ ----");
+    }
+
+    void timKiemDanhBa() {
+        tieuDe("---- TÌM KIẾM DANH BẠ ----");
+    }
+
+    void docTuFile() {
+        tieuDe("---- ĐỌC TỪ FILE ----");
+    }
+
+    void ghiVaoFile() {
+        tieuDe("---- ĐỌC TỪ FILE ----");
+    }
+
+    void thoat() {
+        tieuDe("---- THOÁT CHƯƠNG TRÌNH ----");
+        System.exit(0);
+    }
+
+    void tieuDe(String title) {
+        System.out.println(title);
+    }
 }
